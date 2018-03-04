@@ -43,6 +43,7 @@ class TaskController extends Controller
           'newTaskName' => 'required | min: 5 | max:255',
         ]);
         $task = new Task;
+        $task->status = 'incomplete';
         $task->name = $request->newTaskName;
 
         $task->save();
@@ -88,9 +89,15 @@ class TaskController extends Controller
 
         $this->validate($request, [
           'updatedTaskName' => 'required | min: 5 | max:255',
+          'updateTaskStatus' => 'required',
         ]);
 
         $task = Task::find($id);
+
+        // Adding validation for checking if status is complete or incomplete
+        if($request->updateTaskStatus == 'complete' || $request->updateTaskStatus == 'incomplete' ){
+          $task->status = $request->updateTaskStatus;
+        };
 
         $task->name = $request->updatedTaskName;
 

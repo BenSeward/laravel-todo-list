@@ -39,6 +39,14 @@
             </div>
 
             <div class="form-group">
+              <select class="form-control form-control-lg" name="updateTaskStatus" default="{{ $taskUnderEdit->status }}">
+                /* need to add some kind of check here for security */
+                <option value="incomplete">Incomplete</option>
+                <option value="complete">Complete</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <input class="btn btn-success btn-lg" type="submit" name="" value="Save Changes">
               <a class="btn btn-danger btn-lg pull-right" href="{{ route( 'tasks.index' )}}">Go back</a>
             </div>

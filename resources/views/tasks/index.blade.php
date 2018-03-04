@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="col-md-offset-2 col-md-8">
+      <div class="col-md-offset-1 col-md-10">
         <div class="row">
           <h1>To Do List</h1>
         </div>
@@ -47,6 +47,7 @@
           <thead>
             <th>Task Number</th>
             <th>Name</th>
+            <th>Status</th>
             <th>Edit</th>
             <th>Delete</th>
           </thead>
@@ -56,6 +57,7 @@
             <tr>
               <th>{{ $storedTask->id }}</th>
               <td>{{ $storedTask->name }}</td>
+              <td>{{ $storedTask->status }}</td>
               <td><a class="btn btn-default" href="{{ route('tasks.edit', ['tasks' => $storedTask->id]) }}">Edit</a></td>
               <td>
                 <form action="{{ route('tasks.destroy', ['tasks' => $storedTask->id]) }}" method="post">
