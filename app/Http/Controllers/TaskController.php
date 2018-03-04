@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\task;
 use Illuminate\Http\Request;
 use Session;
+use Auth;
 
 class TaskController extends Controller
 {
@@ -15,8 +16,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
-        $tasks = Task::orderBy('id', 'desc')->paginate(5);
+        //get the users ID and display only their posts
+        $getUserId = Auth::user()->id;
+        
+        $tasks = Task::where('user_id', $getUserId)->orderBy('id', 'desc')->paginate(5);
         return view('tasks.index')->with('storedTasks', $tasks);
     }
 
@@ -43,6 +46,7 @@ class TaskController extends Controller
           'newTaskName' => 'required | min: 5 | max:255',
         ]);
         $task = new Task;
+        $task->user_id = Auth::user()->id;
         $task->status = 'incomplete';
         $task->name = $request->newTaskName;
 

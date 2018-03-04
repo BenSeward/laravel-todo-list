@@ -4,7 +4,6 @@
     <div class="col-md-offset-1 col-md-10">
       <div class="row">
         <h1>To Do List</h1>
-        <h3>Hello, {{ Auth::user()->name }}</h3>
       </div>
       @if(Session::has('success'))
         <div class="alert alert-success">
